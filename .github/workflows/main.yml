@@ -25,7 +25,7 @@ jobs:
 
       - name: Generate ZIP
         run: |
-          zip -r deployment.zip dist/
+          cd dist && zip -r deployment.zip dist/
 
       - name: Deploy to Lambda
         uses: appleboy/lambda-action@v0.2.0
