@@ -1,18 +1,33 @@
-name: deploy to lambda
+name: Deploy to lambda
 on: [push]
 
 jobs:
   deploy_zip:
-    name: deploy lambda function
+    name: Deploy lambda function
     runs-on: ubuntu-latest
 
     steps:
-      - name: checkout source code
+      - name: Checkout source code
         uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: "latest"
+
+      - name: Install TypeScript
+        run: |
+          npm install typescript
+
+      - name: Compile TypeScript
+        run: |
+          npx tsc
+
       - name: Generate ZIP
         run: |
-          zip deployment.zip *.mts
-      - name: default deploy
+          zip -r deployment.zip dist/
+
+      - name: Deploy to Lambda
         uses: appleboy/lambda-action@v0.2.0
         with:
           aws_access_key_id: ${{ secrets.AWS_ACCESS_KEY_ID }}
