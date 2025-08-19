@@ -1,4 +1,4 @@
-import { log } from "./log.mts";
+import { log } from "./log";
 
 export const handler = async (
   event: any
