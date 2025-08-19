@@ -1,6 +1,8 @@
-import { log } from "./log.mjs";
+import { log } from "./log.mts";
 
-export const handler = async (event) => {
+export const handler = async (
+  event: any
+): Promise<{ statusCode: number; body: string }> => {
   log("Log de execução após o GitHub Action. event:" + JSON.stringify(event));
 
   return {
