@@ -17,7 +17,7 @@ jobs:
 
       - name: Install TypeScript
         run: |
-          npm install typescript
+          npm install typescript --save-dev @types/node
 
       - name: Compile TypeScript
         run: |
